@@ -1,17 +1,16 @@
 class Solution(object):
     def maxVowels(self, s, k):
         vowels=['a','e','i','o','u']
-        counter=0
         inital=list(s)
         out=[]
         for i in range(len(inital)-k+1):
-            list=inital[i:i+k]
-            for j in list:
-                if j in vowels:
+            list1=inital[i:i+k]
+            counter = 0
+            for j in range(len(list1)):
+                if list1[j] in vowels:
                     counter+=1
-                out.append(counter)
+            out.append(counter)
         return max(out)
-
 
 
 
