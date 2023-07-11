@@ -4,28 +4,21 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def pairSum(self, head: Optional[ListNode]) -> int:
-
-        fast, slow, start = head, head, head
-        largestSum = 0
-
-        while fast.next.next:
-            fast = fast.next.next
-            slow = slow.next
-        end = fast.next
-
-        prev = slow
-        slow = slow.next
-        prev.next = None
-        while slow:
-            next = slow.next
-            slow.next = prev
-            prev = slow
-            slow = next
-
-        while start:
-            largestSum = max(largestSum, start.val + end.val)
-            start = start.next
-            end = end.next
-
-        return largestSum
+    def pairSum(head):
+        trace = []
+        current = head
+        counter = 0
+        while current:
+            counter += 1
+            trace.append(current.val)
+            current = current.next
+        iteration = counter // 2
+        first = trace[:iteration]
+        second = trace[iteration:][::-1]
+        count = 0
+        for i in range(iteration):
+            val1 = first[i]
+            val2 = second[i]
+            if val1 + val2 > count:
+                count = val1 + val2
+        return count
