@@ -1,5 +1,5 @@
 class Solution:
-    def reverseString(self, s) -> None:
+    def reverse_string(s) -> None:
         def reverse_helper(left, right):
             if left >= right:
                 return
