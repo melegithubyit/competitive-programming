@@ -9,15 +9,14 @@ class Employee:
 
 
 class Solution:
-    def getImportance(self, employees, id: int):
-        employee_map = {}
+    def getImportance(self, employees: List['Employee'], id: int) -> int:
+        Emap = dict()
         for employee in employees:
-            employee_map[employee.id] = employee
-
-        def dfs(employee_id):
-            employee = employee_map[employee_id]
-            total_importance = employee.importance
-            for subordinate_id in employee.subordinates:
-                total_importance += dfs(subordinate_id)
-            return total_importance
-        return dfs(id)
+            Emap[employee.id] = employee
+        def DFS(e):
+            imp = Emap[e].importance        
+            for sub in Emap[e].subordinates:
+                imp += DFS(sub)
+                
+            return imp
+        return DFS(id)
