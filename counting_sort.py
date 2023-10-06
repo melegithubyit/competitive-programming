@@ -1,33 +1,18 @@
-import math
-import os
-import random
-import re
-import sys
+def counting_sort(arr):
+    m = min(arr)
+    n = max(arr)
+    count = [0] * (n - m + 1)
 
+    for num in arr:
+        count[num - m] += 1
 
-# The function is expected to return an INTEGER_ARRAY.
-# The function accepts INTEGER_ARRAY arr as parameter.
+    for i in range(1, len(count)):
+        count[i] += count[i - 1]
+        
+    sorted_arr = [0] * len(arr)
+    for num in reversed(arr):
+        sorted_arr[count[num - m] - 1] = num
+        count[num - m] -= 1
 
-def countingSort(arr):
-    frequency = [0 for _ in range(100)]
-    min_num = 0
-    max_num = 99
-    range_of_num = 100
-    for i in range(len(arr)):
-        frequency[arr[i]] += 1
-    return frequency
+    return sorted_arr
 
-
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    n = int(input().strip())
-
-    arr = list(map(int, input().rstrip().split()))
-
-    result = countingSort(arr)
-
-    fptr.write(' '.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
