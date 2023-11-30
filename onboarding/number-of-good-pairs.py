@@ -1,9 +1,17 @@
-class Solution(object):
-    def numIdenticalPairs(self, nums):
-        NoOfGoodPairs=0
-        for i in range(0,len(nums)):
-            for  j in range(i+1,len(nums)):
-                if nums[i]==nums[j]:
-                    NoOfGoodPairs+=1
+class Solution:
+    def numIdenticalPairs(self, nums: List[int]) -> int:
+        hashTable = defaultdict(int)
+        counter = 0
+        for i in nums:
+            if i not in hashTable:
+                hashTable[i] += 1
+            
+            else:
+                counter += hashTable[i]
+                hashTable[i] += 1
 
-        return NoOfGoodPairs
+            
+        return counter
+
+
+        
