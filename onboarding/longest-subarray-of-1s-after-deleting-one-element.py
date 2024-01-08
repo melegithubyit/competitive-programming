@@ -2,7 +2,6 @@ class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
         longest = 0
         left = 0
-        right = 0
         zeros = 0
 
 
