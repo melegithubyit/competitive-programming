@@ -9,27 +9,21 @@ class Solution:
 
         self.max_val = float('-inf')
         self.min_val = float('inf')
-        self.ans = 0
 
         def helper(root, max_val, min_val):
 
             if not root:
-                self.ans = max(self.ans, max_val - min_val)
-                return 
-            
+                return max_val - min_val
+
             max_val = max(max_val, root.val)
-            min_val = min(min_val, root.val)
-        
-            if root and not root.left and not root.right:
-                self.ans = max(self.ans, max_val - min_val)
-                return 
-            
+            min_val = min(min_val, root.val)   
+
 
             left = helper(root.left, max_val, min_val)
             right = helper(root.right, max_val, min_val)
-        
 
-        helper(root, self.max_val, self.min_val)
-        return self.ans
-        # return max(left, right)
+            return max(left, right)
+
+        return helper(root, self.max_val, self.min_val)
+
         
